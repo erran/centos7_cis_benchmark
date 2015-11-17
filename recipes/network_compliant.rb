@@ -19,27 +19,36 @@ node.default['sysctl']['params']['net']['ipv4']['icmp_echo_ignore_broadcasts'] =
 
 node.default['sysctl']['params']['net']['ipv4']['icmp_ignore_bogus_error_responses'] = 1
 
-node.default['sysctl']['params']['net']['ipv4']['conf.all.rp_filter'] = 1
-node.default['sysctl']['params']['net']['ipv4']['conf.default.rp_filter'] = 1
+node.default['sysctl']['params']['net']['ipv4']['conf']['all.rp_filter'] = 1
+node.default['sysctl']['params']['net']['ipv4']['conf']['default.rp_filter'] = 1
 
 node.default['sysctl']['params']['net']['ipv4']['tcp_syncookies'] = 1
-node.default['sysctl']['params']['net']['ipv4']['route.flush'] = 1
 
-node.default['sysctl']['params']['net']['ipv6']['conf.all.accept_ra'] = 0
-node.default['sysctl']['params']['net']['ipv6']['conf.default.accept_ra'] = 0
-node.default['sysctl']['params']['net']['ipv6']['conf.all.accept_ra'] = 0
-node.default['sysctl']['params']['net']['ipv6']['conf.default.accept_ra'] = 0
-node.default['sysctl']['params']['net']['ipv6']['route.flush'] = 1
+node.default['sysctl']['params']['net']['ipv6']['conf']['all']['accept_ra'] = 0
+node.default['sysctl']['params']['net']['ipv6']['conf']['default']['accept_ra'] = 0
+node.default['sysctl']['params']['net']['ipv6']['conf']['all']['accept_ra'] = 0
+node.default['sysctl']['params']['net']['ipv6']['conf']['default']['accept_ra'] = 0
 
-node.default['sysctl']['params']['net']['ipv6']['conf.all.accept_redirects'] = 0
-node.default['sysctl']['params']['net']['ipv6']['conf.default.accept_redirects'] = 0
-node.default['sysctl']['params']['net']['ipv6']['conf.all.accept_redirects'] = 0
-node.default['sysctl']['params']['net']['ipv6']['conf.default.accept_redirects'] = 0
-node.default['sysctl']['params']['net']['ipv6']['route.flush'] = 1
+node.default['sysctl']['params']['net']['ipv6']['conf']['all']['accept_redirects'] = 0
+node.default['sysctl']['params']['net']['ipv6']['conf']['default']['accept_redirects'] = 0
+node.default['sysctl']['params']['net']['ipv6']['conf']['all']['accept_redirects'] = 0
+node.default['sysctl']['params']['net']['ipv6']['conf']['default']['accept_redirects'] = 0
 
-node.default['sysctl']['params']['net']['ipv6']['conf.all.disable_ipv6'] = 1
-node.default['sysctl']['params']['net']['ipv6']['conf.all.disable_ipv6'] = 1
+node.default['sysctl']['params']['net']['ipv6']['conf']['all']['disable_ipv6'] = 1
+node.default['sysctl']['params']['net']['ipv6']['conf']['all']['disable_ipv6'] = 1
+
+node.default['sysctl']['params']['net']['ipv6']['route']['flush'] = 1
 
 # node.default['sysctl']['params']['net']['ipv4']['route']['flush'] = 1
 
 include_recipe 'sysctl::apply'
+
+yum_package 'tcp_wrappers'
+
+ruby_block "insert_line" do
+	block do
+		file = Chef::Util::FileEdit.new("/etc/hosts.allow")
+		file.insert_line_if_no_match("/localhost:/", "localhost:")
+		file.write_file
+	end	
+end

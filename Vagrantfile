@@ -8,7 +8,9 @@ Vagrant.configure(2) do |config|
   config.berkshelf.enabled = true
   config.omnibus.chef_version = :latest
   config.vm.provision :chef_solo do |chef|
-    chef.add_recipe 'centos7_cis_benchmark::network'
+    chef.add_recipe 'centos7_cis_benchmark::network_compliant'
+    chef.add_recipe 'centos7_cis_benchmark::OS_Services'
+  #  chef.add_recipe 'centos7_cis_benchmark::default'
   end
 end
 
