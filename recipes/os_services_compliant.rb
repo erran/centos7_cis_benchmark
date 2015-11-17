@@ -1,45 +1,45 @@
 #2.1.1
-service 'telnet-server' do
+package 'telnet-server' do
   action :remove
 end
 #2.1.2
-service 'telnet' do
+package 'telnet' do
   action :remove
 end
 #2.1.3
-service 'rsh-server' do
+package 'rsh-server' do
   action :remove
 end
 #2.1.4
-service 'rsh' do
+package 'rsh' do
   action :remove
 end
 #2.1.5
-service 'ypbind' do
+package 'ypbind' do
   action :remove
 end
 #2.1.6
-service 'ypserv' do
+package 'ypserv' do
   action :remove
 end
 #2.1.7
-service 'tftp' do
+package 'tftp' do
   action :remove
 end
 #2.1.8
-service 'tftp-server' do
+package 'tftp-server' do
   action :remove
 end
 #2.1.9
-service 'talk' do
+package 'talk' do
   action :remove
 end
 #2.1.10
-service 'talk-server' do
+package 'talk-server' do
   action :remove
 end
 #2.1.11
-service 'xinetd' do
+package 'xinetd' do
   action :remove
 end
 #2.1.12
