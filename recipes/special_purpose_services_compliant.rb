@@ -8,7 +8,7 @@ ruby_block "insert_line" do
 end
 #3.2
 service 'X Windows System' do
-  action :remove
+  action [:stop, :disable]
 end
 #3.3
 service 'avahi-daemon' do
@@ -20,7 +20,7 @@ service 'cups' do
 end
 #3.5
 service 'DHCP' do
-  action :remove
+  action [:stop, :disable]
 end
 #3.6
 #Rule @Conor doesn't have time to configure.

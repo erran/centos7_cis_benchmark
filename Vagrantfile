@@ -9,7 +9,8 @@ Vagrant.configure(2) do |config|
   config.omnibus.chef_version = :latest
   config.vm.provision :chef_solo do |chef|
     chef.add_recipe 'centos7_cis_benchmark::network_compliant'
-    chef.add_recipe 'centos7_cis_benchmark::OS_Services'
+    chef.add_recipe 'centos7_cis_benchmark::os_services_compliant'
+    chef.add_recipe 'centos7_cis_benchmark::special_purpose_services_compliant'
   #  chef.add_recipe 'centos7_cis_benchmark::default'
   end
 end
