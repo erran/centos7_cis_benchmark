@@ -5,6 +5,7 @@ Vagrant.configure(2) do |config|
   # General Vagrant settings:
   config.vm.box = "centos/7"
 
-  # Vagrant Omnibus (Chef) settings:
+  # Vagrant Chef (Berkshelf/Omnibus) settings:
+  config.berkshelf.enabled = true
   config.omnibus.chef_version = :latest
 end
